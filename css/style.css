@@ -1,0 +1,103 @@
+/* При адаптивной верстке используем %
+для ширины */
+.container{
+    width: 80%;
+    margin: 10px auto;
+    overflow: hidden;
+}
+.gallery-title {
+    text-align: center;
+}
+.gallery{
+    list-style-type: none;
+/* так как <ul> у нас является контейнером
+для плавающих объектов браузер не может 
+высчитать его высоту , высота float равна 0. 
+Используя такой display
+мы заставляем браузер таки посчитать высоту
+контейнвепра, ведь за ним должна где-то 
+начаться новая строка, так как он "снаружи"
+теперь себя ведет как inline 
+*/
+    display: inline-block;
+}
+
+/* Предположим мы хотим чтобы галерея имела 5 
+столбцов в своем полном размере, 
+отступ по 2% слева и справа от каждой картинки
+значит все картинки это 80% полезной 
+ширины галереи
+80%/5=16%*/
+
+.picture {
+    font: 10px/1.5 Verdana, Helvetica, Sans-serif;
+    float: left;
+    width: 16%;
+    margin: 2% 2% 30px 2%;
+    box-sizing: border-box;
+    border: solid 1px blue;
+ }
+ .picture a {
+    color: #435153;
+}
+.gal_image {
+/* указывая ширину таким образом мы вписываем 
+картинку в положенные ей ограничения ширины 
+родительского контейнера - <li> и кроме того 
+автоматически уменьшаем высоту пропорционально
+ширине
+*/
+    max-width: 100%;
+}
+.footer {
+    color: white;
+    background-color:black;
+    text-align: center;
+}
+
+@media only screen and (min-width : 941px){
+    .picture:nth-child(5n+1){
+        content: "1";
+        border: solid 1px red;
+        clear: left;
+    }
+}
+
+@media only screen and (min-width : 721px) and (max-width : 940px){
+/* 100%-4*4 =84
+84%/4=21% */
+.picture {
+    width: 21%;  
+}
+.container ul li:nth-child(4n+1){
+ 
+    clear: left;
+}
+}
+@media only screen and (min-width : 531px) and (max-width : 720px){
+/* 100%-3*4 = 88
+88%/3=29.33% */  
+.picture {
+    width: 29.33%;  
+}  
+.picture:nth-child(3n+1){
+    clear: left;
+}
+}
+@media only screen and (min-width : 320px) and (max-width : 530px){
+/* 100%-2*4 =92
+92%/2=46% */ 
+.picture {
+    width: 46%;  
+}  
+.picture:nth-child(2n+1){
+    clear: left;
+} 
+}
+@media only screen and (max-width : 320px){
+ /* 100% - 4 =96
+ 96% */ 
+ .picture {
+    width: 96%;  
+}  
+}
